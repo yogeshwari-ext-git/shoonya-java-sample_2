@@ -26,6 +26,13 @@ class BillingServiceTest {
     }
 
     @Test
+    void calculatesZeroPricedLineTotal() {
+        BigDecimal result = billingService.calculateLineTotal(BigDecimal.ZERO, 3);
+
+        assertEquals(new BigDecimal("0.00"), result);
+    }
+
+    @Test
     void rejectsNonPositiveQuantity() {
         assertThrows(IllegalArgumentException.class,
                 () -> billingService.calculateLineTotal(new BigDecimal("10.00"), 0));
