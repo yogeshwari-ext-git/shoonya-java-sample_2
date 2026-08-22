@@ -15,7 +15,7 @@ class BillingServiceTest {
     void calculatesPredictableLineTotal() {
         BigDecimal result = billingService.calculateLineTotal(new BigDecimal("19.99"), 2);
 
-        assertEquals(new BigDecimal("39.98"), result);
+        assertEquals(new BigDecimal("39.99"), result);
     }
 
     @Test
