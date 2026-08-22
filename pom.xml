@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.shoonya</groupId>
+  <artifactId>billing-service</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>Billing Service</name>
+  <description>Minimal billing service for Project Shoonya Phase 1</description>
+
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <commons-lang3.version>3.20.0</commons-lang3.version>
+    <junit.version>5.13.4</junit.version>
+    <maven.compiler.version>3.15.0</maven.compiler.version>
+    <maven.surefire.version>3.5.5</maven.surefire.version>
+    <cyclonedx.version>2.9.3</cyclonedx.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.version}</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.cyclonedx</groupId>
+        <artifactId>cyclonedx-maven-plugin</artifactId>
+        <version>${cyclonedx.version}</version>
+        <executions>
+          <execution>
+            <id>generate-sbom</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>makeAggregateBom</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <projectType>application</projectType>
+          <schemaVersion>1.6</schemaVersion>
+          <includeTestScope>false</includeTestScope>
+          <outputDirectory>${project.basedir}/sbom</outputDirectory>
+          <outputName>bom</outputName>
+          <outputFormat>json</outputFormat>
+          <skipAttach>true</skipAttach>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

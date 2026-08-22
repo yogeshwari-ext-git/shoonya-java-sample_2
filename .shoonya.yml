@@ -1,0 +1,7 @@
+schema_version: 1
+app: billing-service
+name: Billing Service
+owner: Billing Team
+environment: test
+technology: java
+build_tool: maven
