@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - master
-      - add-sbom-generation
+      - feature/my-changes
 
   pull_request:
     branches:
