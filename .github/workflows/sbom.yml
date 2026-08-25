@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feature/my-changes
   workflow_dispatch:
 
 permissions:
